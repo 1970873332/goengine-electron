@@ -1,0 +1,16 @@
+{
+    "name": "@goengine/electron",
+    "version": "0.1.0",
+    "description": "Hello GoEngine.electron",
+    "license": "MIT",
+    "author": "Mr.Rui",
+    "type": "module",
+    "dependencies": {
+        "fingerprint-generator": "^2.1.77",
+        "fingerprint-injector": "^2.1.77",
+        "framer-motion": "^12.23.24"
+    },
+    "devDependencies": {
+        "electron": "^39.2.3"
+    }
+}
