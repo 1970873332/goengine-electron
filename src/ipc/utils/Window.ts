@@ -1,3 +1,6 @@
+import { UtilBrowser } from "@electron/utils/Browser";
+import { UtilConfig } from "@electron/utils/Config";
+import { UtilWindow } from "@electron/utils/Window";
 import {
     BaseWindow,
     BaseWindowConstructorOptions,
@@ -7,9 +10,6 @@ import {
     Size,
     WebContents,
 } from "electron";
-import { UtilBrowser } from "../../utils/Browser";
-import { UtilConfig } from "../../utils/Config";
-import { UtilWindow } from "../../utils/Window";
 import BaseUtils from "../Index";
 import { IPCWindowMaping } from "../Maps";
 import {
@@ -25,13 +25,13 @@ export class WindowUtils extends BaseUtils {
         string,
         (event: IpcMainInvokeEvent, ...args: any[]) => any
     > = {
-        [IPCWindowMaping.close]: WindowUtils.close,
-        [IPCWindowMaping.verify]: WindowUtils.verify,
-        [IPCWindowMaping.openBase]: WindowUtils.openBaseWindow,
-        [IPCWindowMaping.openBrowser]: WindowUtils.openBrowserWindow,
-        [IPCWindowMaping.applyState]: WindowUtils.applyWindowState,
-        [IPCWindowMaping.obtainScreenSize]: WindowUtils.obtainScreenSize,
-    };
+            [IPCWindowMaping.close]: WindowUtils.close,
+            [IPCWindowMaping.verify]: WindowUtils.verify,
+            [IPCWindowMaping.openBase]: WindowUtils.openBaseWindow,
+            [IPCWindowMaping.openBrowser]: WindowUtils.openBrowserWindow,
+            [IPCWindowMaping.applyState]: WindowUtils.applyWindowState,
+            [IPCWindowMaping.obtainScreenSize]: WindowUtils.obtainScreenSize,
+        };
 
     /**
      * 验证
@@ -55,7 +55,7 @@ export class WindowUtils extends BaseUtils {
         config?: TConstructorConfig,
     ): Promise<number> {
         const options: IConstructorOptions =
-                await UtilConfig.configureBaseWindowOptions(config),
+            await UtilConfig.configureBaseWindowOptions(config),
             win: BaseWindow = new BaseWindow(options);
         // 应用窗口状态
         await UtilWindow.applyState(win, options);
@@ -73,7 +73,7 @@ export class WindowUtils extends BaseUtils {
         config?: IPCBrowserConstructorConfig,
     ): Promise<number> {
         const options: IPCBrowserConstructorOptions =
-                await UtilConfig.configureBrowserWindowOptions(config),
+            await UtilConfig.configureBrowserWindowOptions(config),
             win: BrowserWindow = new BrowserWindow(options),
             webContents: WebContents = win.webContents;
         // 应用窗口状态
@@ -156,5 +156,6 @@ type TWindow = BaseWindow | BrowserWindow;
 export {
     TWindow as IPCWindow,
     TConstructorConfig as IPCWindowConstructorConfig,
-    IConstructorOptions as IPCWindowConstructorOptions,
+    IConstructorOptions as IPCWindowConstructorOptions
 };
+

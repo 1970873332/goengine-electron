@@ -7,17 +7,13 @@ import {
     WebContentsView,
     WebContentsViewConstructorOptions,
 } from "electron";
-import { UtilConfig } from "../..//utils/Config";
-import { UtilSession } from "../..//utils/Session";
-import { UtilWebContents } from "../..//utils/WebContents";
-import { UtilWebView } from "../..//utils/WebView";
-import { UtilWindow } from "../..//utils/Window";
-import WebViewManager, { ManagerWebViewData } from "../../managers/WebView";
-import {
-    UtilBrowser,
-    UtilBrowserConstructorConfig,
-    UtilBrowserConstructorOptions,
-} from "../../utils/Browser";
+import WebViewManager, { ManagerWebViewData } from "@electron/managers/WebView";
+import { UtilBrowser, UtilBrowserConstructorConfig, UtilBrowserConstructorOptions } from "@electron/utils/Browser";
+import { UtilConfig } from "@electron/utils/Config";
+import { UtilSession } from "@electron/utils/Session";
+import { UtilWebContents } from "@electron/utils/WebContents";
+import { UtilWebView } from "@electron/utils/WebView";
+import { UtilWindow } from "@electron/utils/Window";
 import BaseUtils from "../Index";
 import { IPCWebViewMaping } from "../Maps";
 import { IPCWindow } from "./Window";
@@ -30,30 +26,30 @@ export class WebViewUtils extends BaseUtils {
         string,
         (event: IpcMainInvokeEvent, ...args: any[]) => any
     > = {
-        [IPCWebViewMaping.obtain]: WebViewUtils.obtain,
-        [IPCWebViewMaping.obtainID]: WebViewUtils.obtainID,
-        [IPCWebViewMaping.obtainAll]: WebViewUtils.obtainAll,
-        [IPCWebViewMaping.clearCache]: WebViewUtils.clearCache,
-        [IPCWebViewMaping.clearStorage]: WebViewUtils.clearStorage,
-        [IPCWebViewMaping.goto]: WebViewUtils.goto,
-        [IPCWebViewMaping.send]: WebViewUtils.send,
-        [IPCWebViewMaping.stop]: WebViewUtils.stop,
-        [IPCWebViewMaping.close]: WebViewUtils.close,
-        [IPCWebViewMaping.agent]: WebViewUtils.agent,
-        [IPCWebViewMaping.delete]: WebViewUtils.delete,
-        [IPCWebViewMaping.reload]: WebViewUtils.reload,
-        [IPCWebViewMaping.attach]: WebViewUtils.attach,
-        [IPCWebViewMaping.detach]: WebViewUtils.detach,
-        [IPCWebViewMaping.capture]: WebViewUtils.capture,
-        [IPCWebViewMaping.readyState]: WebViewUtils.readyState,
-        [IPCWebViewMaping.openDevTools]: WebViewUtils.openDevTools,
-        [IPCWebViewMaping.verifyAttached]: WebViewUtils.verifyAttached,
-        [IPCWebViewMaping.executeJavaScript]: WebViewUtils.executeJavaScript,
-        [IPCWebViewMaping.specifyBounds]: WebViewUtils.specifyBounds,
-        [IPCWebViewMaping.specifyVisible]: WebViewUtils.specifyVisible,
-        [IPCWebViewMaping.specifyBackgroundColor]:
-            WebViewUtils.specifyBackgroundColor,
-    };
+            [IPCWebViewMaping.obtain]: WebViewUtils.obtain,
+            [IPCWebViewMaping.obtainID]: WebViewUtils.obtainID,
+            [IPCWebViewMaping.obtainAll]: WebViewUtils.obtainAll,
+            [IPCWebViewMaping.clearCache]: WebViewUtils.clearCache,
+            [IPCWebViewMaping.clearStorage]: WebViewUtils.clearStorage,
+            [IPCWebViewMaping.goto]: WebViewUtils.goto,
+            [IPCWebViewMaping.send]: WebViewUtils.send,
+            [IPCWebViewMaping.stop]: WebViewUtils.stop,
+            [IPCWebViewMaping.close]: WebViewUtils.close,
+            [IPCWebViewMaping.agent]: WebViewUtils.agent,
+            [IPCWebViewMaping.delete]: WebViewUtils.delete,
+            [IPCWebViewMaping.reload]: WebViewUtils.reload,
+            [IPCWebViewMaping.attach]: WebViewUtils.attach,
+            [IPCWebViewMaping.detach]: WebViewUtils.detach,
+            [IPCWebViewMaping.capture]: WebViewUtils.capture,
+            [IPCWebViewMaping.readyState]: WebViewUtils.readyState,
+            [IPCWebViewMaping.openDevTools]: WebViewUtils.openDevTools,
+            [IPCWebViewMaping.verifyAttached]: WebViewUtils.verifyAttached,
+            [IPCWebViewMaping.executeJavaScript]: WebViewUtils.executeJavaScript,
+            [IPCWebViewMaping.specifyBounds]: WebViewUtils.specifyBounds,
+            [IPCWebViewMaping.specifyVisible]: WebViewUtils.specifyVisible,
+            [IPCWebViewMaping.specifyBackgroundColor]:
+                WebViewUtils.specifyBackgroundColor,
+        };
 
     /**
      * 获取
@@ -66,12 +62,12 @@ export class WebViewUtils extends BaseUtils {
         config?: TConstructorConfig,
     ): Promise<string> {
         const options: IConstructorOptions =
-                await UtilConfig.configureWebViewOptions(config),
+            await UtilConfig.configureWebViewOptions(config),
             preview: WebContentsView | undefined =
                 WebViewManager.obtainInstance().get(options.viewID),
             { id, view }: ManagerWebViewData =
                 !config?.close &&
-                UtilWebContents.effective(preview?.webContents)
+                    UtilWebContents.effective(preview?.webContents)
                     ? { id: options.viewID!, view: preview! }
                     : await WebViewManager.obtainInstance().obtain(options);
         // 指定是否可见
@@ -299,7 +295,7 @@ export class WebViewUtils extends BaseUtils {
         winID: number,
     ): void {
         const webview: WebContentsView | undefined =
-                WebViewManager.obtainInstance().get(id),
+            WebViewManager.obtainInstance().get(id),
             view: View | undefined = UtilWindow.obtain(winID)?.contentView;
         WebViewUtils.specifyVisible(event, id, true);
         webview && view && UtilBrowser.attach(webview, view);
@@ -316,7 +312,7 @@ export class WebViewUtils extends BaseUtils {
         winID: number,
     ): void {
         const webview: WebContentsView | undefined =
-                WebViewManager.obtainInstance().get(id),
+            WebViewManager.obtainInstance().get(id),
             view: View | undefined = UtilWindow.obtain(winID)?.contentView;
         WebViewUtils.specifyVisible(event, id, false);
         webview && view && UtilBrowser.detach(webview, view);
@@ -419,5 +415,6 @@ type TConstructorConfig = IConstructorOptions & UtilBrowserConstructorConfig;
 
 export {
     TConstructorConfig as IPCWebViewConstructorConfig,
-    IConstructorOptions as IPCWebViewConstructorOptions,
+    IConstructorOptions as IPCWebViewConstructorOptions
 };
+

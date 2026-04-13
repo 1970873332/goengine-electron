@@ -1,4 +1,4 @@
-import { userData } from "@/package.json";
+import { userData } from "package.json";
 import { app } from "electron";
 import { join, resolve } from "path";
 

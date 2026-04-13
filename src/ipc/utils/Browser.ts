@@ -1,3 +1,6 @@
+import { UtilBrowser, UtilBrowserConstructorConfig, UtilBrowserConstructorOptions } from "@electron/utils/Browser";
+import { UtilSession } from "@electron/utils/Session";
+import { UtilWebContents } from "@electron/utils/WebContents";
 import {
     BrowserWindow,
     BrowserWindowConstructorOptions,
@@ -6,13 +9,6 @@ import {
     Session,
     WebContents,
 } from "electron";
-import {
-    UtilBrowser,
-    UtilBrowserConstructorConfig,
-    UtilBrowserConstructorOptions,
-} from "../../utils/Browser";
-import { UtilSession } from "../../utils/Session";
-import { UtilWebContents } from "../../utils/WebContents";
 import BaseUtils from "../Index";
 import { IPCBrowserMaping } from "../Maps";
 import {
@@ -28,15 +24,15 @@ export class BrowserUtils extends BaseUtils {
         string,
         (event: IpcMainInvokeEvent, ...args: any[]) => any
     > = {
-        [IPCBrowserMaping.capture]: BrowserUtils.capture,
-        [IPCBrowserMaping.clearCache]: BrowserUtils.clearCache,
-        [IPCBrowserMaping.clearStorage]: BrowserUtils.clearStorage,
-        [IPCBrowserMaping.openDevTools]: BrowserUtils.openDevTools,
-        [IPCBrowserMaping.closeDevTools]: BrowserUtils.closeDevTools,
-        [IPCBrowserMaping.executeJavaScript]: BrowserUtils.executeJavaScript,
-        [IPCBrowserMaping.obtainFocusedTarget]:
-            BrowserUtils.obtainFocusedTarget,
-    };
+            [IPCBrowserMaping.capture]: BrowserUtils.capture,
+            [IPCBrowserMaping.clearCache]: BrowserUtils.clearCache,
+            [IPCBrowserMaping.clearStorage]: BrowserUtils.clearStorage,
+            [IPCBrowserMaping.openDevTools]: BrowserUtils.openDevTools,
+            [IPCBrowserMaping.closeDevTools]: BrowserUtils.closeDevTools,
+            [IPCBrowserMaping.executeJavaScript]: BrowserUtils.executeJavaScript,
+            [IPCBrowserMaping.obtainFocusedTarget]:
+                BrowserUtils.obtainFocusedTarget,
+        };
 
     /**
      * 清除缓存
@@ -139,9 +135,9 @@ export class BrowserUtils extends BaseUtils {
  */
 interface IConstructorOptions
     extends
-        BrowserWindowConstructorOptions,
-        IPCWindowConstructorOptions,
-        UtilBrowserConstructorOptions {}
+    BrowserWindowConstructorOptions,
+    IPCWindowConstructorOptions,
+    UtilBrowserConstructorOptions { }
 /**
  * 配置
  */
@@ -151,5 +147,6 @@ type TConstructorConfig = IConstructorOptions &
 
 export {
     TConstructorConfig as IPCBrowserConstructorConfig,
-    IConstructorOptions as IPCBrowserConstructorOptions,
+    IConstructorOptions as IPCBrowserConstructorOptions
 };
+

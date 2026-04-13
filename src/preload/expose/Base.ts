@@ -1,24 +1,15 @@
+import { IPCAPPMaping, IPCBrowserMaping, IPCFileDialogMaping, IPCFileMaping, IPCSessionMaping, IPCShellMaping, IPCSocksMaping, IPCWebViewMaping, IPCWindowMaping } from "@electron/ipc/Maps";
+import { AppUtils } from "@electron/ipc/utils/App";
+import { BrowserUtils } from "@electron/ipc/utils/Browser";
+import { FileUtils } from "@electron/ipc/utils/File";
+import { FileDialogUtils } from "@electron/ipc/utils/FileDialog";
+import { SessionUtils } from "@electron/ipc/utils/Session";
+import { ShellUtils } from "@electron/ipc/utils/Shell";
+import { SocksUtils } from "@electron/ipc/utils/Socks";
+import { WebViewUtils } from "@electron/ipc/utils/WebView";
+import { WindowUtils } from "@electron/ipc/utils/Window";
 import { ipcRenderer, IpcRendererEvent } from "electron";
-import {
-    IPCAPPMaping,
-    IPCBrowserMaping,
-    IPCFileDialogMaping,
-    IPCFileMaping,
-    IPCSessionMaping,
-    IPCShellMaping,
-    IPCSocksMaping,
-    IPCWebViewMaping,
-    IPCWindowMaping,
-} from "../../ipc/Maps";
-import { type AppUtils } from "../../ipc/utils/App";
-import { type BrowserUtils } from "../../ipc/utils/Browser";
-import { type FileUtils } from "../../ipc/utils/File";
-import { type FileDialogUtils } from "../../ipc/utils/FileDialog";
-import { type SessionUtils } from "../../ipc/utils/Session";
-import { type ShellUtils } from "../../ipc/utils/Shell";
-import { type SocksUtils } from "../../ipc/utils/Socks";
-import { type WebViewUtils } from "../../ipc/utils/WebView";
-import { type WindowUtils } from "../../ipc/utils/Window";
+
 
 /**
  * 调用
@@ -38,7 +29,7 @@ export class BaseExpose {
     public static obtainInstance(): BaseExpose {
         return (this.instance ??= new this());
     }
-    protected constructor() {}
+    protected constructor() { }
 
     /**
      * common
@@ -280,7 +271,7 @@ export class BaseExpose {
     public obtainFocusedTarget: TFuncToPromise<
         typeof BrowserUtils.obtainFocusedTarget
     > = (...args: any[]) =>
-        invoke(IPCBrowserMaping.obtainFocusedTarget, ...args);
+            invoke(IPCBrowserMaping.obtainFocusedTarget, ...args);
 
     //#endregion
 
@@ -332,7 +323,7 @@ export class BaseExpose {
     public specifyWebViewBackgroundColor: TFuncToPromise<
         typeof WebViewUtils.specifyBackgroundColor
     > = (...args: any[]) =>
-        invoke(IPCWebViewMaping.specifyBackgroundColor, ...args);
+            invoke(IPCWebViewMaping.specifyBackgroundColor, ...args);
     /**
      * 清除网络视图缓存
      * @returns

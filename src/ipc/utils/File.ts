@@ -1,3 +1,4 @@
+import { UtilError } from "@electron/utils/Error";
 import { IpcMainInvokeEvent } from "electron";
 import { Stats } from "fs";
 import {
@@ -10,7 +11,6 @@ import {
     unlink,
     writeFile,
 } from "fs/promises";
-import { UtilError } from "../../utils/Error";
 import BaseUtils from "../Index";
 import { IPCFileMaping } from "../Maps";
 
@@ -22,15 +22,15 @@ export class FileUtils extends BaseUtils {
         string,
         (event: IpcMainInvokeEvent, ...args: any[]) => any
     > = {
-        [IPCFileMaping.isDir]: FileUtils.isDir,
-        [IPCFileMaping.mkdir]: FileUtils.mkdir,
-        [IPCFileMaping.rmdir]: FileUtils.rmdir,
-        [IPCFileMaping.readdir]: FileUtils.readdir,
-        [IPCFileMaping.isFile]: FileUtils.isFile,
-        [IPCFileMaping.unlink]: FileUtils.unlink,
-        [IPCFileMaping.readFile]: FileUtils.readFile,
-        [IPCFileMaping.copyFile]: FileUtils.copyFile,
-    };
+            [IPCFileMaping.isDir]: FileUtils.isDir,
+            [IPCFileMaping.mkdir]: FileUtils.mkdir,
+            [IPCFileMaping.rmdir]: FileUtils.rmdir,
+            [IPCFileMaping.readdir]: FileUtils.readdir,
+            [IPCFileMaping.isFile]: FileUtils.isFile,
+            [IPCFileMaping.unlink]: FileUtils.unlink,
+            [IPCFileMaping.readFile]: FileUtils.readFile,
+            [IPCFileMaping.copyFile]: FileUtils.copyFile,
+        };
 
     /**
      * 获取文件信息

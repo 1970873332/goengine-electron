@@ -1,10 +1,10 @@
+import SocksManager from "@electron/managers/Socks";
+import { UtilServer } from "@electron/utils/Server";
 import { IpcMainInvokeEvent } from "electron";
 import {
     SocksClientEstablishedEvent,
     SocksRemoteHost,
 } from "socks/typings/common/constants";
-import SocksManager from "../../managers/Socks";
-import { UtilServer } from "../../utils/Server";
 import BaseUtils from "../Index";
 import { IPCSocksMaping } from "../Maps";
 
@@ -16,8 +16,8 @@ export class SocksUtils extends BaseUtils {
         string,
         (event: IpcMainInvokeEvent, ...args: any[]) => any
     > = {
-        [IPCSocksMaping.connect]: SocksUtils.connect,
-    };
+            [IPCSocksMaping.connect]: SocksUtils.connect,
+        };
 
     /**
      * 连接

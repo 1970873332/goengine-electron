@@ -1,4 +1,4 @@
-import { userData } from "@/package.json";
+import { userData } from "package.json";
 import { BrowserViewConstructorOptions, session } from "electron";
 import { resolve } from "path";
 import {
