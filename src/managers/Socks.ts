@@ -9,7 +9,7 @@ export default class SocksManager extends Map<
     string,
     SocksClientEstablishedEvent | null
 > {
-    declare protected static instance: SocksManager;
+    protected declare  static instance: SocksManager;
     public static obtainInstance(): SocksManager {
         return (this.instance ??= new this());
     }

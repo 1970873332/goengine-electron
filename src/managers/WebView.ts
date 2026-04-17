@@ -7,7 +7,7 @@ import { UtilBrowser } from "../utils/Browser";
  * 网络视图管理
  */
 export default class WebViewManager extends Map<string, WebContentsView> {
-    declare protected static instance: WebViewManager;
+    protected declare  static instance: WebViewManager;
     public static obtainInstance(): WebViewManager {
         return (this.instance ??= new this());
     }

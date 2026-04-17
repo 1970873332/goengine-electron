@@ -7,7 +7,7 @@ export default abstract class BaseUtils {
     /**
      * 配置
      */
-    declare public config: Record<
+    public declare  config: Record<
         string,
         (event: IpcMainInvokeEvent, ...args: any[]) => any
     >;

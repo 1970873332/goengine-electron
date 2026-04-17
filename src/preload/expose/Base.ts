@@ -25,7 +25,7 @@ function invoke(name: string, ...Rest: any[]): any {
  * 预加载
  */
 export class BaseExpose {
-    declare protected static instance: BaseExpose;
+    protected declare  static instance: BaseExpose;
     public static obtainInstance(): BaseExpose {
         return (this.instance ??= new this());
     }
