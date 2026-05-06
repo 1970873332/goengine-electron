@@ -1,5 +1,5 @@
-import { userData } from "package.json";
 import { BrowserViewConstructorOptions, session } from "electron";
+import EngineConfig from "engine.config.json";
 import { resolve } from "path";
 import {
     IPCBrowserConstructorConfig,
@@ -15,11 +15,11 @@ import {
 } from "../ipc/utils/Window";
 
 const {
+    title,
     electron: {
         out: { preload },
     },
-    title,
-} = userData;
+} = EngineConfig;
 /**
  * 配置工具
  */
@@ -109,19 +109,19 @@ export abstract class UtilConfig {
             },
             // 偏好选项
             webPreferencesOptions: BrowserViewConstructorOptions["webPreferences"] =
-                {
-                    preload: mergeConfig?.preload
-                        ? resolve(import.meta.dirname, preload)
-                        : void 0,
-                    session: mergeConfig?.partition
-                        ? session.fromPartition(
-                              mergeConfig.persistent
-                                  ? `persist:${mergeConfig.partition}`
-                                  : mergeConfig.partition,
-                              { cache: !!mergeConfig.cache },
-                          )
-                        : session.defaultSession,
-                },
+            {
+                preload: mergeConfig?.preload
+                    ? resolve(import.meta.dirname, preload)
+                    : void 0,
+                session: mergeConfig?.partition
+                    ? session.fromPartition(
+                        mergeConfig.persistent
+                            ? `persist:${mergeConfig.partition}`
+                            : mergeConfig.partition,
+                        { cache: !!mergeConfig.cache },
+                    )
+                    : session.defaultSession,
+            },
             // 最终选项
             finalOptions: IPCWebViewConstructorOptions = {
                 ...mergeConfig,

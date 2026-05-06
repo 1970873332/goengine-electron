@@ -1,10 +1,10 @@
-import { userData } from "package.json";
 import { app } from "electron";
+import EngineConfig from "engine.config.json";
 import { join, resolve } from "path";
 
 const {
     web: { build },
-} = userData;
+} = EngineConfig;
 
 export default class Global {
     /**
