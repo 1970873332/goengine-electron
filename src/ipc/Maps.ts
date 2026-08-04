@@ -1,4 +1,4 @@
-export enum IPCAPPMaping {
+export enum AppIPCMaping {
     /**
      * 获取路径
      */
@@ -13,7 +13,7 @@ export enum IPCAPPMaping {
     getAllPath = "app:getAllPath",
 }
 
-export enum IPCBrowserMaping {
+export enum BrowserIPCMaping {
     /**
      * 截图
      */
@@ -119,7 +119,7 @@ export enum IPCSocksMaping {
     connect = "socks:connect",
 }
 
-export enum IPCWebViewMaping {
+export enum WebViewIPCMaping {
     /**
      * 获取
      */
@@ -210,7 +210,7 @@ export enum IPCWebViewMaping {
     specifyBackgroundColor = "webview:specifyBackgroundColor",
 }
 
-export enum IPCWindowMaping {
+export enum WindowIPCMaping {
     /**
      * 关闭
      */
