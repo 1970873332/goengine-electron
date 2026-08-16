@@ -3,18 +3,18 @@ import EngineConfig from "@/engine.config.json";
 import { join, resolve } from "path";
 
 const {
-    web: { build },
+    web: { out },
 } = EngineConfig;
 
 export default class Global {
     /**
      * web路径
      */
-    public static webURL: string = join(build, "index.html");
+    public static webURL: string = join(out, "index.html");
     /**
      * 入口地址
      */
     public static uri: string = app.isPackaged
         ? resolve(app.getAppPath(), this.webURL)
-        : `${process.env.USE_AGREEMENT}://${process.env.USE_HOST}:${process.env.USE_PORT}`;
+        : `${process.env.ENV_PROTOCOL}://${process.env.ENV_HOST}:${process.env.ENV_PORT}`;
 }
