@@ -8,9 +8,11 @@
     "dependencies": {
         "fingerprint-generator": "^2.1.77",
         "fingerprint-injector": "^2.1.77",
-        "framer-motion": "^12.23.24"
+        "socks": "^2.8.7",
+        "tcp-port-used": "^1.0.2"
     },
     "devDependencies": {
+        "@types/tcp-port-used": "^1.0.4",
         "electron": "^39.2.3"
     }
 }
