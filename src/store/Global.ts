@@ -3,14 +3,14 @@ import EngineConfig from "@/engine.config.json";
 import { join, resolve } from "path";
 
 const {
-    web: { out },
+    web: { out, index = "index.html" },
 } = EngineConfig;
 
 export default class Global {
     /**
      * web路径
      */
-    public static webURL: string = join(out, "index.html");
+    public static webURL: string = join(out, index);
     /**
      * 入口地址
      */
