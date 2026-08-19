@@ -4,12 +4,10 @@ import { existsSync } from "fs";
 import { basename, join, resolve } from "path";
 
 const {
-    web: { out: dir },
-    html: {
-        webpack: { out: webpackOut = "index.html" },
-        vite: htmlVite = "index.html",
-        angular: htmlAngular = "index.html",
+    web: {
+        out: { dir },
     },
+    webpack: { out: webpackOut = "index.html" },
 } = EngineConfig;
 
 /**
@@ -18,13 +16,8 @@ const {
  */
 function webEntry(): string {
     const candidates: string[] = Array.from(
-        new Set([
-            webpackOut,
-            htmlVite,
-            basename(htmlVite),
-            htmlAngular,
-            basename(htmlAngular),
-        ]),
+        /* vite / angular 入口为固定约定 index.html */
+        new Set([webpackOut, "index.html"]),
     );
 
     if (app.isPackaged) {
